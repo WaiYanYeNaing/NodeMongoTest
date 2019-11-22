@@ -25,4 +25,13 @@ router.post('/', async (req, res) => {
     }
 })
 
+router.delete('/:id', async (req, res) => {
+    try{
+        const removeBook = await Book.deleteOne({_id: req.params.id})
+        res.json(removeBook)
+    } catch(err) {
+        res.json({msg: err})
+    }
+})
+
 module.exports = router
