@@ -25,6 +25,19 @@ router.post('/', async (req, res) => {
     }
 })
 
+router.put('/:id', async (req, res) => {
+    const {book_name, author_name} = req.body
+    const updateBook = await Book.updateOne({_id: req.params.id}, {
+        book_name,
+        author_name,
+        // $set: {
+        //     book_name,
+        //     author_name
+        // }
+    })
+    res.json(updateBook)
+})
+
 router.delete('/:id', async (req, res) => {
     try{
         const removeBook = await Book.deleteOne({_id: req.params.id})
